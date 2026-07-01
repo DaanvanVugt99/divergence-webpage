@@ -17,7 +17,7 @@ export const faqItems = [
   {
     question: "Where will launcher downloads live?",
     answer:
-      "The first version links to GitHub Releases. Direct download buttons may come later if the release process and legal copy are ready.",
+      "The first version links directly to GitHub Releases. If a download link is temporarily unavailable, use the release page linked from Downloads.",
   },
   {
     question: "Will the changelog come from GitHub automatically?",
@@ -28,5 +28,10 @@ export const faqItems = [
     question: "Are online features planned?",
     answer:
       "Possibly later, but v0.1 does not include accounts, online play, backend services, or browser-based emulation.",
+  },
+  {
+    question: "Why does macOS warn about the app?",
+    answer:
+      "The current alpha build may be unsigned until Apple Developer ID signing and notarization are configured. That is a distribution limitation, not a ROM requirement.",
   },
 ];
