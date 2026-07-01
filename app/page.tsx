@@ -40,21 +40,6 @@ const featureCards = [
   },
 ];
 
-const statusItems = [
-  {
-    label: "Launcher requirement",
-    value: "Optional",
-  },
-  {
-    label: "Base ROM hosting",
-    value: "Not provided",
-  },
-  {
-    label: "Initial downloads",
-    value: "GitHub Releases",
-  },
-];
-
 export default function Home() {
   return (
     <div>
@@ -104,25 +89,14 @@ export default function Home() {
 
       <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <LegalNote />
-        <div className="mt-8 grid gap-3 sm:grid-cols-3">
-          {statusItems.map((item) => (
-            <Card key={item.label} className="bg-secondary/45 shadow-xs">
-              <CardHeader>
-                <CardDescription>{item.label}</CardDescription>
-                <CardTitle>{item.value}</CardTitle>
-              </CardHeader>
-            </Card>
-          ))}
-        </div>
-
-        <div className="mt-4 grid gap-4 md:grid-cols-3">
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
           {featureCards.map((feature) => {
             const Icon = feature.icon;
 
             return (
               <Card key={feature.title} className="bg-card/80 shadow-xs">
                 <CardHeader>
-                  <Icon className="size-5 text-primary" />
+                  <Icon className="size-5" />
                   <CardTitle>{feature.title}</CardTitle>
                   <CardDescription>{feature.description}</CardDescription>
                 </CardHeader>

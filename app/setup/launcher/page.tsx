@@ -43,6 +43,8 @@ export default async function LauncherSetupPage() {
       eyebrow="Launcher setup"
       title="Launcher setup"
       description="Use the optional desktop launcher for the cleanest local setup flow. The launcher does not include a base Pokemon Emerald ROM."
+      backHref="/setup"
+      backLabel="Setup"
     >
       <div className="space-y-6">
         <LegalNote />
@@ -55,16 +57,16 @@ export default async function LauncherSetupPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <ol className="space-y-3">
+            <ol className="grid gap-2">
               {setupSteps.map((step, index) => (
                 <li
                   key={step}
-                  className="grid grid-cols-[auto_1fr] gap-3 text-sm leading-6 text-muted-foreground"
+                  className="grid grid-cols-[2rem_1fr] items-center gap-3 rounded-lg border bg-secondary/35 px-3 py-2.5 text-sm leading-6 text-muted-foreground"
                 >
-                  <span className="flex size-7 items-center justify-center rounded-full bg-primary/10 text-xs font-medium text-primary">
+                  <span className="flex size-8 items-center justify-center rounded-full bg-primary text-sm font-medium text-primary-foreground">
                     {index + 1}
                   </span>
-                  <span>{step}</span>
+                  <span className="text-foreground/85">{step}</span>
                 </li>
               ))}
             </ol>
