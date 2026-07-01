@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="96" viewBox="0 0 460 96" role="img" aria-labelledby="title">
+  <title id="title">Divergence</title>
+  <defs>
+    <linearGradient id="fill" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#8fffe1"/>
+      <stop offset="0.46" stop-color="#18d39d"/>
+      <stop offset="1" stop-color="#07906f"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.72"/>
+      <stop offset="0.42" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="drop" x="-6%" y="-20%" width="112%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="1.5" flood-color="#001712" flood-opacity="0.48"/>
+    </filter>
+  </defs>
+  <g filter="url(#drop)">
+    <text
+      x="230"
+      y="66"
+      text-anchor="middle"
+      font-family="Arial Black, Impact, ui-sans-serif, system-ui, sans-serif"
+      font-size="58"
+      font-weight="900"
+      letter-spacing="-1"
+      fill="#071b18"
+      stroke="#071b18"
+      stroke-width="13"
+      stroke-linejoin="round"
+      paint-order="stroke fill"
+    >DIVERGENCE</text>
+    <text
+      x="230"
+      y="66"
+      text-anchor="middle"
+      font-family="Arial Black, Impact, ui-sans-serif, system-ui, sans-serif"
+      font-size="58"
+      font-weight="900"
+      letter-spacing="-1"
+      fill="url(#fill)"
+      stroke="#d9fff5"
+      stroke-width="3"
+      stroke-linejoin="round"
+      paint-order="stroke fill"
+    >DIVERGENCE</text>
+    <text
+      x="230"
+      y="66"
+      text-anchor="middle"
+      font-family="Arial Black, Impact, ui-sans-serif, system-ui, sans-serif"
+      font-size="58"
+      font-weight="900"
+      letter-spacing="-1"
+      fill="url(#shine)"
+    >DIVERGENCE</text>
+  </g>
+</svg>
