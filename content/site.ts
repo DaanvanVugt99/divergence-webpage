@@ -5,7 +5,7 @@ export const siteConfig = {
     "A fast-paced Emerald Rogue ROM hack built around divergent Pokemon, unique abilities, custom variants, and highly replayable roguelike runs.",
   launcherReleasesUrl:
     "https://github.com/example/divergence-launcher/releases",
-  repositoryUrl: "https://github.com/example/divergence-webpage",
+  repositoryUrl: "https://github.com/DaanvanVugt99/divergence-webpage",
   navItems: [
     { href: "/", label: "Home" },
     { href: "/downloads", label: "Downloads" },
