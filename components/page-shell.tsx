@@ -21,7 +21,7 @@ export function PageShell({
   description,
   children,
   className,
-  backHref = "/",
+  backHref = null,
   backLabel = "Home",
 }: PageShellProps) {
   return (

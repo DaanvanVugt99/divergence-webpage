@@ -78,7 +78,7 @@ export default function SetupPage() {
                   <div className="flex flex-wrap items-center gap-2">
                     <MonitorCogIcon className="size-5 shrink-0 text-primary" />
                     <CardTitle className="text-2xl">Launcher setup</CardTitle>
-                    <span className="rounded-full bg-primary px-2 py-0.5 text-xs font-medium text-primary-foreground">
+                    <span className="inline-flex h-5 items-center rounded-full bg-primary px-2 text-xs font-medium leading-none text-primary-foreground">
                       Recommended
                     </span>
                   </div>
@@ -99,7 +99,7 @@ export default function SetupPage() {
                 </Link>
               </div>
 
-              <div className="overflow-hidden rounded-xl border bg-secondary/35 px-2 pt-4">
+              <div>
                 <Image
                   src="/launcher-preview-light.png"
                   alt="Divergence Launcher preview in light mode"

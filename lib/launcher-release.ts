@@ -89,17 +89,24 @@ const toLauncherRelease = (release: GitHubRelease): LauncherRelease | null => {
   };
 };
 
+const githubReleaseHeaders = {
+  Accept: "application/vnd.github+json",
+  "X-GitHub-Api-Version": "2022-11-28",
+};
+
 export async function getLauncherRelease(): Promise<LauncherRelease> {
   try {
     const response = await fetch(
       "https://api.github.com/repos/DaanvanVugt99/divergence-launcher/releases",
-      {
-        headers: {
-          Accept: "application/vnd.github+json",
-          "X-GitHub-Api-Version": "2022-11-28",
-        },
-        next: { revalidate: 600 },
-      },
+      process.env.NODE_ENV === "development"
+        ? {
+            headers: githubReleaseHeaders,
+            cache: "no-store",
+          }
+        : {
+            headers: githubReleaseHeaders,
+            next: { revalidate: 600 },
+          },
     );
 
     if (!response.ok) {
