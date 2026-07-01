@@ -14,9 +14,9 @@ export function SiteHeader() {
             <Image
               src="/divergence-wordmark-clean.svg"
               alt={siteConfig.shortName}
-              width={460}
-              height={96}
-              className="h-14 w-auto"
+              width={560}
+              height={112}
+              className="h-16 w-auto"
               priority
               unoptimized
             />
