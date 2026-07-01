@@ -34,11 +34,23 @@ function applyTheme(theme: ColorTheme) {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<ColorTheme>(getDocumentTheme);
+  const [theme, setTheme] = useState<ColorTheme>("light");
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    applyTheme(theme);
-  }, [theme]);
+    const frame = window.requestAnimationFrame(() => {
+      setTheme(getDocumentTheme());
+      setIsHydrated(true);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
+    if (isHydrated) {
+      applyTheme(theme);
+    }
+  }, [isHydrated, theme]);
 
   return (
     <ThemeContext.Provider
