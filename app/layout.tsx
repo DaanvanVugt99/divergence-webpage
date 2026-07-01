@@ -1,6 +1,5 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -18,10 +17,21 @@ const geistMono = Geist_Mono({
 
 const themeInitScript = `
 (() => {
+  const storageKey = "divergence-theme";
+
   try {
-    const theme = window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
+    let storedTheme;
+
+    try {
+      storedTheme = window.localStorage.getItem(storageKey);
+    } catch {
+    }
+
+    const theme = storedTheme === "light" || storedTheme === "dark"
+      ? storedTheme
+      : window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
     const root = document.documentElement;
 
     root.classList.remove("light", "dark");
@@ -32,6 +42,16 @@ const themeInitScript = `
 })();
 `;
 
+function InlineScript({ html }: { html: string }) {
+  return (
+    <script
+      type={typeof window === "undefined" ? "text/javascript" : "text/plain"}
+      suppressHydrationWarning
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
+  );
+}
+
 export const metadata: Metadata = {
   title: {
     default: "Pokemon Emerald Rogue: Divergence",
@@ -39,6 +59,10 @@ export const metadata: Metadata = {
   },
   description:
     "A public website for Pokemon Emerald Rogue: Divergence, setup guidance, optional launcher downloads, changelog, FAQ, and legal notes.",
+};
+
+export const viewport: Viewport = {
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({
@@ -53,11 +77,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <Script
-          id="theme-init"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{ __html: themeInitScript }}
-        />
+        <InlineScript html={themeInitScript} />
       </head>
       <body className="flex min-h-full flex-col">
         <ThemeProvider>

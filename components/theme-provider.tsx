@@ -15,6 +15,8 @@ type ThemeContextValue = {
   toggleTheme: () => void;
 };
 
+const themeStorageKey = "divergence-theme";
+
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 function getDocumentTheme(): ColorTheme {
@@ -31,6 +33,13 @@ function applyTheme(theme: ColorTheme) {
   root.classList.remove("light", "dark");
   root.classList.add(theme);
   root.style.colorScheme = theme;
+}
+
+function persistTheme(theme: ColorTheme) {
+  try {
+    window.localStorage.setItem(themeStorageKey, theme);
+  } catch {
+  }
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
@@ -57,7 +66,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       value={{
         theme,
         toggleTheme: () =>
-          setTheme((current) => (current === "dark" ? "light" : "dark")),
+          setTheme((current) => {
+            const nextTheme = current === "dark" ? "light" : "dark";
+
+            persistTheme(nextTheme);
+
+            return nextTheme;
+          }),
       }}
     >
       {children}
