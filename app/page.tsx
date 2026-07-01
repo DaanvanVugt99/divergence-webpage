@@ -62,11 +62,7 @@ export default function Home() {
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-emerald-300/45 to-transparent" />
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.78fr)] lg:px-8 lg:py-16">
           <div>
-            <div className="inline-flex w-fit items-center gap-2 rounded-lg border border-white/15 bg-white/10 px-3 py-1.5 text-sm text-emerald-50/85 shadow-sm backdrop-blur">
-              <span className="size-2 rounded-full bg-emerald-300 shadow-[0_0_18px_oklch(0.8_0.18_158)]" />
-              Public website v0.1
-            </div>
-            <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
               {siteConfig.name}
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-emerald-50/78">
