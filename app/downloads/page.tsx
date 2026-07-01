@@ -18,7 +18,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { launcherRelease, siteConfig } from "@/content/site";
+import { siteConfig } from "@/content/site";
+import { getLauncherRelease } from "@/lib/launcher-release";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -26,26 +27,27 @@ export const metadata: Metadata = {
   description: "Launcher download notes for Pokemon Emerald Rogue: Divergence.",
 };
 
-const downloadCards = [
-  {
-    platform: "macOS Apple Silicon",
-    description:
-      "For Apple Silicon Macs. The build is unsigned until Apple Developer ID signing is configured.",
-    href: launcherRelease.macDownloadUrl,
-    icon: AppleIcon,
-    fileName: "Divergence.Launcher-darwin-arm64-0.1.0.zip",
-  },
-  {
-    platform: "Windows x64",
-    description:
-      "For 64-bit Windows. The launcher stays separate from your emulator and ROM files.",
-    href: launcherRelease.windowsDownloadUrl,
-    icon: MonitorIcon,
-    fileName: "Divergence.Launcher-win32-x64-0.1.0.zip",
-  },
-];
+export default async function DownloadsPage() {
+  const launcherRelease = await getLauncherRelease();
+  const downloadCards = [
+    {
+      platform: "macOS Apple Silicon",
+      description:
+        "For Apple Silicon Macs. The build is unsigned until Apple Developer ID signing is configured.",
+      href: launcherRelease.mac.downloadUrl,
+      icon: AppleIcon,
+      fileName: launcherRelease.mac.name,
+    },
+    {
+      platform: "Windows x64",
+      description:
+        "For 64-bit Windows. The launcher stays separate from your emulator and ROM files.",
+      href: launcherRelease.windows.downloadUrl,
+      icon: MonitorIcon,
+      fileName: launcherRelease.windows.name,
+    },
+  ];
 
-export default function DownloadsPage() {
   return (
     <PageShell
       eyebrow="Downloads"
@@ -64,14 +66,16 @@ export default function DownloadsPage() {
             </CardHeader>
             <CardContent className="space-y-5">
               <p className="text-sm leading-6 text-muted-foreground">
-                These buttons link directly to release ZIP files. If a link is
-                unavailable, use the release page while the download flow is
-                being tested.
+                These buttons are loaded from the latest non-draft launcher
+                release on GitHub. If a direct link is unavailable, use the
+                release page while the download flow is being tested.
               </p>
-              <p className="text-sm leading-6 text-muted-foreground">
-                Alpha download links require access to the launcher GitHub
-                repository while that repository is private.
-              </p>
+              {launcherRelease.source === "fallback" ? (
+                <p className="text-sm leading-6 text-muted-foreground">
+                  GitHub release metadata is temporarily unavailable, so this
+                  page is showing the last known test release.
+                </p>
+              ) : null}
               <div className="flex flex-col gap-3 sm:flex-row">
                 <a
                   href={launcherRelease.releaseUrl}

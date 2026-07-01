@@ -17,7 +17,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { launcherRelease } from "@/content/site";
+import { getLauncherRelease } from "@/lib/launcher-release";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -35,7 +35,9 @@ const setupSteps = [
   "Launch mGBA from the launcher, or export the patched ROM for another emulator.",
 ];
 
-export default function LauncherSetupPage() {
+export default async function LauncherSetupPage() {
+  const launcherRelease = await getLauncherRelease();
+
   return (
     <PageShell
       eyebrow="Launcher setup"
@@ -55,7 +57,10 @@ export default function LauncherSetupPage() {
           <CardContent>
             <ol className="space-y-3">
               {setupSteps.map((step, index) => (
-                <li key={step} className="grid grid-cols-[auto_1fr] gap-3 text-sm leading-6 text-muted-foreground">
+                <li
+                  key={step}
+                  className="grid grid-cols-[auto_1fr] gap-3 text-sm leading-6 text-muted-foreground"
+                >
                   <span className="flex size-7 items-center justify-center rounded-full bg-primary/10 text-xs font-medium text-primary">
                     {index + 1}
                   </span>
@@ -70,7 +75,8 @@ export default function LauncherSetupPage() {
             <CheckCircle2Icon className="size-5 text-primary" />
             <CardTitle>Current launcher release</CardTitle>
             <CardDescription>
-              {launcherRelease.label} is the current test build linked from this site.
+              {launcherRelease.label} is the current test build linked from
+              this site.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-3 sm:flex-row">
