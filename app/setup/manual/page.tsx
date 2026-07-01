@@ -26,6 +26,8 @@ export default function ManualSetupPage() {
       eyebrow="Manual setup"
       title="Manual setup"
       description="Use the patched ROM directly in your emulator without relying on launcher-only features."
+      backHref="/setup"
+      backLabel="Setup"
     >
       <div className="space-y-6">
         <LegalNote />

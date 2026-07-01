@@ -1,5 +1,8 @@
+import Link from "next/link";
 import type { ReactNode } from "react";
+import { ArrowLeftIcon } from "lucide-react";
 
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 type PageShellProps = {
@@ -8,6 +11,8 @@ type PageShellProps = {
   description: string;
   children: ReactNode;
   className?: string;
+  backHref?: string | null;
+  backLabel?: string;
 };
 
 export function PageShell({
@@ -16,10 +21,29 @@ export function PageShell({
   description,
   children,
   className,
+  backHref = "/",
+  backLabel = "Home",
 }: PageShellProps) {
   return (
-    <div className={cn("mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:px-8", className)}>
+    <div
+      className={cn(
+        "mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:px-8",
+        className,
+      )}
+    >
       <div className="max-w-3xl">
+        {backHref ? (
+          <Link
+            href={backHref}
+            className={cn(
+              buttonVariants({ variant: "outline", size: "sm" }),
+              "mb-6 w-fit",
+            )}
+          >
+            <ArrowLeftIcon data-icon="inline-start" />
+            {backLabel}
+          </Link>
+        ) : null}
         {eyebrow ? (
           <p className="text-sm font-medium uppercase tracking-wide text-primary">
             {eyebrow}

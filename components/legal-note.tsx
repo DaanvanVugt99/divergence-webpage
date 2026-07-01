@@ -10,7 +10,7 @@ export function LegalNote({
 }) {
   return (
     <Alert className="border-primary/20 bg-primary/5 text-foreground shadow-xs">
-      <ShieldCheckIcon className="size-4 text-primary" />
+      <ShieldCheckIcon className="size-6 text-primary" />
       <AlertTitle>{title}</AlertTitle>
       <AlertDescription className="text-muted-foreground">
         {legalReminder}
