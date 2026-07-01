@@ -30,7 +30,7 @@ const setupOptions = [
   {
     title: "Launcher setup",
     description:
-      "Use the desktop launcher for guided setup, updates, and online play.",
+      "Use the desktop launcher for guided local setup and native mGBA launch.",
     href: "/setup/launcher",
     icon: MonitorCogIcon,
     action: "Use launcher setup",

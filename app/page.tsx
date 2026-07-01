@@ -27,9 +27,9 @@ const featureCards = [
     icon: Gamepad2Icon,
   },
   {
-    title: "Downloads via GitHub",
+    title: "Launcher downloads",
     description:
-      "Launcher builds will initially live on GitHub Releases.",
+      "Download the optional desktop launcher for macOS or Windows.",
     icon: SparklesIcon,
   },
   {

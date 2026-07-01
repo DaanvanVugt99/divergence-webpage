@@ -37,6 +37,11 @@ const legalSections = [
     description:
       "Optional launcher downloads may be linked from GitHub Releases. Those downloads should not include a base Pokemon Emerald ROM.",
   },
+  {
+    title: "Release links",
+    description:
+      "GitHub Release links may point to alpha or test builds while distribution is being verified. Release artifacts are launcher files only.",
+  },
 ];
 
 export default function LegalPage() {
