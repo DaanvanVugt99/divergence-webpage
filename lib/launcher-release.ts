@@ -30,26 +30,26 @@ export type LauncherRelease = {
   releaseUrl: string;
   isPrerelease: boolean;
   source: "github" | "fallback";
-  mac: LauncherReleaseAsset;
-  windows: LauncherReleaseAsset;
+  mac: LauncherReleaseAsset | null;
+  windows: LauncherReleaseAsset | null;
 };
 
 const fallbackRelease: LauncherRelease = {
-  tag: "v0.1.0-alpha.1",
-  label: "v0.1.0 alpha 1",
+  tag: "v0.1.0-alpha.2",
+  label: "v0.1.0 alpha 2",
   releaseUrl:
-    "https://github.com/DaanvanVugt99/divergence-launcher/releases/tag/v0.1.0-alpha.1",
+    "https://github.com/DaanvanVugt99/divergence-launcher/releases/tag/v0.1.0-alpha.2",
   isPrerelease: true,
   source: "fallback",
   mac: {
     name: "Divergence.Launcher-darwin-arm64-0.1.0.zip",
     downloadUrl:
-      "https://github.com/DaanvanVugt99/divergence-launcher/releases/download/v0.1.0-alpha.1/Divergence.Launcher-darwin-arm64-0.1.0.zip",
+      "https://github.com/DaanvanVugt99/divergence-launcher/releases/download/v0.1.0-alpha.2/Divergence.Launcher-darwin-arm64-0.1.0.zip",
   },
   windows: {
     name: "Divergence.Launcher-win32-x64-0.1.0.zip",
     downloadUrl:
-      "https://github.com/DaanvanVugt99/divergence-launcher/releases/download/v0.1.0-alpha.1/Divergence.Launcher-win32-x64-0.1.0.zip",
+      "https://github.com/DaanvanVugt99/divergence-launcher/releases/download/v0.1.0-alpha.2/Divergence.Launcher-win32-x64-0.1.0.zip",
   },
 };
 
@@ -60,32 +60,30 @@ const formatReleaseLabel = (release: GitHubRelease) =>
 const findAsset = (release: GitHubRelease, pattern: RegExp) =>
   release.assets.find((asset) => pattern.test(asset.name));
 
-const toLauncherRelease = (release: GitHubRelease): LauncherRelease | null => {
-  const mac = findAsset(release, /darwin-arm64.*\.zip$/i);
-  const windows = findAsset(release, /win32-x64.*\.zip$/i);
-
-  if (!mac || !windows) {
+const toLauncherReleaseAsset = (
+  asset: GitHubReleaseAsset | undefined,
+): LauncherReleaseAsset | null => {
+  if (!asset) {
     return null;
   }
 
+  return {
+    name: asset.name,
+    downloadUrl: asset.browser_download_url,
+    digest: asset.digest,
+    size: asset.size,
+  };
+};
+
+const toLauncherRelease = (release: GitHubRelease): LauncherRelease => {
   return {
     tag: release.tag_name,
     label: formatReleaseLabel(release),
     releaseUrl: release.html_url,
     isPrerelease: release.prerelease,
     source: "github",
-    mac: {
-      name: mac.name,
-      downloadUrl: mac.browser_download_url,
-      digest: mac.digest,
-      size: mac.size,
-    },
-    windows: {
-      name: windows.name,
-      downloadUrl: windows.browser_download_url,
-      digest: windows.digest,
-      size: windows.size,
-    },
+    mac: toLauncherReleaseAsset(findAsset(release, /darwin-arm64.*\.zip$/i)),
+    windows: toLauncherReleaseAsset(findAsset(release, /win32-x64.*\.zip$/i)),
   };
 };
 
@@ -122,8 +120,7 @@ export async function getLauncherRelease(): Promise<LauncherRelease> {
 
         return bTime - aTime;
       })
-      .map(toLauncherRelease)
-      .find((candidate): candidate is LauncherRelease => Boolean(candidate));
+      .map(toLauncherRelease)[0];
 
     return release ?? fallbackRelease;
   } catch {

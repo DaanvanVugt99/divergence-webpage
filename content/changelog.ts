@@ -1,6 +1,6 @@
 export const changelogEntries = [
   {
-    version: "v0.1 website alpha",
+    version: "v0.1 website",
     date: "July 2026",
     summary:
       "Initial public website structure for Divergence with launcher download links, setup guidance, FAQ, changelog, and legal notes.",

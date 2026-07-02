@@ -131,8 +131,8 @@ export default function SetupPage() {
 
         <div className="flex flex-col gap-3 rounded-xl border bg-card p-4 text-sm text-muted-foreground shadow-xs sm:flex-row sm:items-center sm:justify-between">
           <p>
-            Looking for the current alpha launcher? Downloads point to the
-            GitHub prerelease build.
+            Looking for the current launcher? Downloads point to the latest
+            GitHub release build.
           </p>
           <Link
             href="/downloads"

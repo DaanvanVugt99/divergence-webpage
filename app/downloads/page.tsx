@@ -33,18 +33,16 @@ export default async function DownloadsPage() {
     {
       platform: "macOS Apple Silicon",
       description:
-        "For Apple Silicon Macs. The build is unsigned until Apple Developer ID signing is configured.",
-      href: launcherRelease.mac.downloadUrl,
+        "For Apple Silicon Macs. Use the latest release if macOS warns about an older download.",
+      asset: launcherRelease.mac,
       icon: AppleIcon,
-      fileName: launcherRelease.mac.name,
     },
     {
       platform: "Windows x64",
       description:
         "For 64-bit Windows. The launcher stays separate from your emulator and ROM files.",
-      href: launcherRelease.windows.downloadUrl,
+      asset: launcherRelease.windows,
       icon: MonitorIcon,
-      fileName: launcherRelease.windows.name,
     },
   ];
 
@@ -59,7 +57,7 @@ export default async function DownloadsPage() {
           <Card>
             <CardHeader>
               <PackageIcon className="size-5 text-primary" />
-              <CardTitle>Current test release</CardTitle>
+              <CardTitle>Current launcher release</CardTitle>
               <CardDescription>
                 {launcherRelease.label} is published from GitHub Releases.
               </CardDescription>
@@ -67,13 +65,13 @@ export default async function DownloadsPage() {
             <CardContent className="space-y-5">
               <p className="text-sm leading-6 text-muted-foreground">
                 These buttons are loaded from the latest non-draft launcher
-                release on GitHub. If a direct link is unavailable, use the
-                release page while the download flow is being tested.
+                release on GitHub. If a platform file is unavailable, use the
+                release page to check whether that build has been published.
               </p>
               {launcherRelease.source === "fallback" ? (
                 <p className="text-sm leading-6 text-muted-foreground">
                   GitHub release metadata is temporarily unavailable, so this
-                  page is showing the last known test release.
+                  page is showing the last known release.
                 </p>
               ) : null}
               <div className="flex flex-col gap-3 sm:flex-row">
@@ -118,18 +116,31 @@ export default async function DownloadsPage() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p className="wrap-break-words font-mono text-xs text-muted-foreground">
-                      {download.fileName}
+                      {download.asset?.name ?? "Not available in this release"}
                     </p>
-                    <a
-                      href={download.href}
-                      className={cn(
-                        buttonVariants({ size: "lg" }),
-                        "w-full justify-between",
-                      )}
-                    >
-                      <span>Download ZIP</span>
-                      <DownloadIcon data-icon="inline-end" />
-                    </a>
+                    {download.asset ? (
+                      <a
+                        href={download.asset.downloadUrl}
+                        className={cn(
+                          buttonVariants({ size: "lg" }),
+                          "w-full justify-between",
+                        )}
+                      >
+                        <span>Download ZIP</span>
+                        <DownloadIcon data-icon="inline-end" />
+                      </a>
+                    ) : (
+                      <span
+                        aria-disabled="true"
+                        className={cn(
+                          buttonVariants({ variant: "outline", size: "lg" }),
+                          "w-full justify-between opacity-55",
+                        )}
+                      >
+                        <span>Unavailable</span>
+                        <DownloadIcon data-icon="inline-end" />
+                      </span>
+                    )}
                   </CardContent>
                 </Card>
               );
@@ -143,7 +154,7 @@ export default async function DownloadsPage() {
             <CardHeader>
               <CardTitle>Smoke-test path</CardTitle>
               <CardDescription>
-                Use this flow for the current alpha build.
+                Use this flow for the current launcher build.
               </CardDescription>
             </CardHeader>
             <CardContent>

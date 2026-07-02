@@ -32,6 +32,6 @@ export const faqItems = [
   {
     question: "Why does macOS warn about the app?",
     answer:
-      "The current alpha build may be unsigned until Apple Developer ID signing and notarization are configured. That is a distribution limitation, not a ROM requirement.",
+      "macOS can warn about newly downloaded apps, and earlier test builds were unsigned. Use the latest launcher download first; any macOS security prompt is a launcher distribution issue, not a ROM requirement.",
   },
 ];

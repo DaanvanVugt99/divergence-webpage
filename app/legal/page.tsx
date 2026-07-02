@@ -40,7 +40,7 @@ const legalSections = [
   {
     title: "Release links",
     description:
-      "GitHub Release links may point to alpha or test builds while distribution is being verified. Release artifacts are launcher files only.",
+      "GitHub Release links may point to prerelease or test builds while distribution is being verified. Release artifacts are launcher files only.",
   },
 ];
 

@@ -77,8 +77,8 @@ export default async function LauncherSetupPage() {
             <CheckCircle2Icon className="size-5 text-primary" />
             <CardTitle>Current launcher release</CardTitle>
             <CardDescription>
-              {launcherRelease.label} is the current test build linked from
-              this site.
+              {launcherRelease.label} is the current launcher release linked
+              from this site.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-3 sm:flex-row">
