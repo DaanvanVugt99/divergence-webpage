@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRightIcon,
@@ -12,6 +11,7 @@ import {
 } from "lucide-react";
 
 import { PageShell } from "@/components/page-shell";
+import { LauncherPreviewZoom } from "@/components/launcher-preview-zoom";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -100,20 +100,7 @@ export default function SetupPage() {
               </div>
 
               <div>
-                <Image
-                  src="/launcher-preview-light.png"
-                  alt="Divergence Launcher preview in light mode"
-                  width={2464}
-                  height={1744}
-                  className="mx-auto block h-auto max-h-[320px] w-full object-contain drop-shadow-xl dark:hidden"
-                />
-                <Image
-                  src="/launcher-preview-dark-clean.png"
-                  alt="Divergence Launcher preview in dark mode"
-                  width={2464}
-                  height={1744}
-                  className="mx-auto hidden h-auto max-h-[320px] w-full object-contain drop-shadow-xl dark:block"
-                />
+                <LauncherPreviewZoom />
               </div>
             </CardContent>
           </Card>
