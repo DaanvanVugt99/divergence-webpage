@@ -35,6 +35,7 @@ export default async function DownloadsPage() {
       description:
         "For Apple Silicon Macs. Use the latest release if macOS warns about an older download.",
       asset: launcherRelease.mac,
+      downloadPath: "/downloads/macos",
       icon: AppleIcon,
     },
     {
@@ -42,6 +43,7 @@ export default async function DownloadsPage() {
       description:
         "For 64-bit Windows. The launcher stays separate from your emulator and ROM files.",
       asset: launcherRelease.windows,
+      downloadPath: "/downloads/windows",
       icon: MonitorIcon,
     },
   ];
@@ -120,7 +122,7 @@ export default async function DownloadsPage() {
                     </p>
                     {download.asset ? (
                       <a
-                        href={download.asset.downloadUrl}
+                        href={download.downloadPath}
                         className={cn(
                           buttonVariants({ size: "lg" }),
                           "w-full justify-between",
