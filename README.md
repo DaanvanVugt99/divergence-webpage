@@ -2,6 +2,8 @@
 
 Static public website for Pokemon Emerald Rogue: Divergence and the optional Divergence Launcher.
 
+**Live site:** https://divergence-webpage.vercel.app
+
 ## Stack
 
 - Next.js App Router
@@ -13,6 +15,7 @@ Static public website for Pokemon Emerald Rogue: Divergence and the optional Div
 ## Development
 
 ```bash
+npm install
 npm run dev
 ```
 
@@ -31,4 +34,4 @@ npm run build
 - This site is not a browser emulator.
 - This site does not host, distribute, or link to a base Pokemon Emerald ROM.
 - Users must provide their own legally obtained Pokemon Emerald ROM.
-- The launcher releases URL is currently a placeholder in `content/site.ts`.
+- Launcher downloads link to the launcher's GitHub Releases page.
